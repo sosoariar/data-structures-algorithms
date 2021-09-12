@@ -19,6 +19,15 @@ public class MainTest {
         System.out.println(arr);
         arr.addFirst(99);
         System.out.println(arr);
+
+        arr.remove(2);
+        System.out.println(arr);
+
+        arr.removeElement(4);
+        System.out.println(arr);
+
+        arr.removeFirst();
+        System.out.println(arr);
     }
 
 }
