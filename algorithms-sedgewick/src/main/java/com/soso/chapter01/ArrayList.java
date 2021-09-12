@@ -17,7 +17,7 @@ public class ArrayList<E> {
 
     // 无参数的构造函数，默认数组的容量capacity=10
     public ArrayList(){
-        this(10);
+        this(16);
     }
 
     // 获取数组的容量
@@ -37,18 +37,19 @@ public class ArrayList<E> {
 
     // 在index索引的位置插入一个新元素e
     public void add(int index, E e){
-
-        if(size == data.length)
-            throw new IllegalArgumentException("Add failed. Array is full.");
-
-        if(index < 0 || index > size)
+        if(index < 0 || index > size){
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+        }
 
-        for(int i = size - 1; i >= index ; i --)
+        if(size == data.length){
+            resize(2 * data.length);
+        }
+
+        for(int i = size - 1; i >= index ; i --){
             data[i + 1] = data[i];
+        }
 
         data[index] = e;
-
         size ++;
     }
 
@@ -96,14 +97,19 @@ public class ArrayList<E> {
 
     // 从数组中删除index位置的元素, 返回删除的元素
     public E remove(int index){
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size){
             throw new IllegalArgumentException("Remove failed. Index is illegal.");
+        }
 
         E ret = data[index];
         for(int i = index + 1 ; i < size ; i ++)
             data[i - 1] = data[i];
         size --;
-        data[size] = null; // loitering objects != memory leak
+
+        if(size == data.length / 2){
+            resize(data.length / 2);
+        }
+
         return ret;
     }
 
@@ -122,6 +128,18 @@ public class ArrayList<E> {
         int index = find(e);
         if(index != -1)
             remove(index);
+    }
+
+    // 将数组空间的容量变成newCapacity大小
+    private void resize(int newCapacity){
+
+        E[] newData = (E[])new Object[newCapacity];
+
+        for(int i = 0 ; i < size ; i ++){
+            newData[i] = data[i];
+        }
+
+        data = newData;
     }
 
     @Override
