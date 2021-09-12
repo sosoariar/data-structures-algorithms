@@ -33,14 +33,7 @@ public class ArrayList {
     }
 
     private void addLast(int e){
-
-        if(size == data.length){
-            throw new IllegalArgumentException("Add failed. Array is full.");
-        }
-
-        data[size] = e;
-        size++;
-
+        add(size,e);
     }
 
     private void add(int index,int e){
