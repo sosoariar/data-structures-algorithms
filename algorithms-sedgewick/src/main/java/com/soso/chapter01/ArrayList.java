@@ -36,6 +36,10 @@ public class ArrayList {
         add(size,e);
     }
 
+    private void addFirst(int e){
+        add(0,e);
+    }
+
     private void add(int index,int e){
 
         if(size == data.length){
@@ -52,5 +56,23 @@ public class ArrayList {
 
         data[index] = e;
         size ++;
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder ans = new StringBuilder();
+        ans.append(String.format("Array:size = %d,capacity = %d\n",size,data.length));
+
+        ans.append("[");
+        for(int i=0; i<size; i++){
+            ans.append(data[i]);
+            if(i!=size-1){
+                ans.append(",");
+            }
+        }
+
+        ans.append("]");
+        return ans.toString();
     }
 }
