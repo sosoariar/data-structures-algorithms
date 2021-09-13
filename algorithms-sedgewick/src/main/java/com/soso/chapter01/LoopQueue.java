@@ -6,18 +6,17 @@ package com.soso.chapter01;
  */
 public class LoopQueue<E> implements Queue<E>  {
 
-
     private E[] data;
     private int front, tail;
-    private int size;  // 有兴趣的同学，在完成这一章后，可以思考一下：
-    // LoopQueue中不声明size，如何完成所有的逻辑？
-    // 这个问题可能会比大家想象的要难一点点：）
+    private int size;
 
     public LoopQueue(int capacity){
+
         data = (E[])new Object[capacity + 1];
+        size = 0;
+        // 初始指针初始化
         front = 0;
         tail = 0;
-        size = 0;
     }
 
     public LoopQueue(){
@@ -95,20 +94,6 @@ public class LoopQueue<E> implements Queue<E>  {
         }
         res.append("] tail");
         return res.toString();
-    }
-
-    public static void main(String[] args){
-
-        LoopQueue<Integer> queue = new LoopQueue<>();
-        for(int i = 0 ; i < 10 ; i ++){
-            queue.enqueue(i);
-            System.out.println(queue);
-
-            if(i % 3 == 2){
-                queue.dequeue();
-                System.out.println(queue);
-            }
-        }
     }
 
 }
