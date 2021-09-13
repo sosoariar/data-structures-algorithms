@@ -55,4 +55,30 @@ public class MainTest {
         System.out.println(arr);
     }
 
+    @Test
+    public void testArrayStack(){
+        ArrayStack<Integer> stack = new ArrayStack<>();
+
+        for(int i = 0 ; i < 5 ; i ++){
+            stack.push(i);
+            System.out.println(stack);
+        }
+
+        stack.pop();
+        System.out.println(stack);
+    }
+
+    @Test
+    public void testArrayQueue(){
+
+        ArrayQueue<Integer> queue = new ArrayQueue<>();
+
+        for(int i = 0 ; i < 5 ; i ++){
+            queue.enqueue(i);
+            System.out.println(queue);
+        }
+
+        queue.dequeue();
+        System.out.println(queue);
+    }
 }
